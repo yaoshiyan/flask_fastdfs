@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>上传文件</title>
+  <style>
+    .main_content {
+      width: 500px;
+      margin: 50px auto;
+    }
+
+    .custom_btn {
+      display: block;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="main_content">
+  <h2>选择文件</h2>
+  <form enctype="multipart/form-data" method="post" action="/uploadFile" onsubmit="return checkData()">
+    <input type="file" name="uploadFile" required>
+    <button type="submit" class="custom_btn">提交</button>
+  </form>
+</div>
+<script src="{{ url_for('static', filename = 'js/jquery.min.js') }}"></script>
+<script>
+    function checkData() {
+        var file = $("input[name='uploadFile']");
+        if (file[0].files.length > 0) {
+            var fileData = file[0].files[0];
+            var fileSize = fileData.size;
+            if (fileSize < 2) {
+                alert("数据太小！");
+                return false
+            }
+            if (fileSize > 5 * 1024 * 1024) {
+                alert("数据不能超过5M！");
+                return false
+            }
+            return true
+        } else {
+            alert("数据为空！");
+            return false
+        }
+    }
+</script>
+</body>
+</html>
