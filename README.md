@@ -1,0 +1,2 @@
+# flask_fastdfs
+一个flask与fastdfs分布式文件系统上传文件的案例，支持py3
